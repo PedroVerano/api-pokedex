@@ -1,0 +1,18 @@
+.pokemon {
+    width: 300px;
+    background-color: darkgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 2rem;
+    transition: all 0.3s;
+
+}
+
+.pokemon span{
+    margin-bottom: 1rem;
+}
+
+.pokemon img {
+        width: 180px;
+    }

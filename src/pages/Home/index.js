@@ -1,23 +1,30 @@
 import { Container, PokedexList, Pokemon} from "./styles";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Home () {
-    const pokemons = [
-        {
-            id:1,
-            name: 'Bulbassauro',
-            image_url: "https://pbs.twimg.com/profile_images/1225497788491931648/B6k9ZlCp_400x400.jpg"
-        },
-        {
-            id:2,
-            name: 'Ivysar',
-            image_url: "https://pbs.twimg.com/profile_images/1225497788491931648/B6k9ZlCp_400x400.jpg"
-        },
-        {
-            id:3,
-            name: 'Charmander',
-            image_url: "https://pbs.twimg.com/profile_images/1225497788491931648/B6k9ZlCp_400x400.jpg"
+    // https://pokeapi.co/api/v2/pokemon?limit=151&offset=0
+    const [pokemons, setPokemons ] = useState([]);
+
+    useEffect(() => {
+        fetchPokemon();
+    }, []);
+
+    const fetchPokemon = () => {
+        const getPokemonUrl = id => `https://pokeapi.co/api/v2/pokemon/${id}`
+
+        const pokemonsPromises = [];
+        for(let i=1; i<152; i++) {
+            pokemonsPromises.push(fetch(getPokemonUrl(i)).then(resonse => resonse.json()));
         }
-    ]
+
+        Promise.all(pokemonsPromises)
+            .then(pokemons => {
+                console.log(pokemons)
+                setPokemons(pokemons);
+            })
+    }
+    
     return(
         <Container>
             <h1>Pokedex</h1>
@@ -25,7 +32,7 @@ function Home () {
                 {pokemons.map(pokemon => {
                     return(
                         <Pokemon key={pokemon.id}>
-                            <a href=""><img src={pokemon.image_url} alt={pokemon.name}></img></a>
+                            <Link to={`/details/${pokemon.id}`}> <img src={pokemon.sprites.front_default} alt={pokemon.name}></img> </Link>
                             <span>{pokemon.name}</span>
                         </Pokemon>
                     )

@@ -9,6 +9,7 @@ h1 {
 li:hover {
     transform: scale(1.1);
 }
+
 `
 export const PokedexList = styled.ul`
 list-style: none;
@@ -20,13 +21,15 @@ row-gap: 4rem;
 
 export const Pokemon = styled.li`
     width: 300px;
-    height: 200px;
-    background-color: darkgrey;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 2rem;
     transition: all 0.3s;
+
+span{
+    margin-bottom: 1rem;
+}
 
 img {
         width: 180px;
