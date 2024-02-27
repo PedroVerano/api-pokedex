@@ -18,7 +18,7 @@ export const Container = styled.div`
     }
 
     img {
-        width: 400px;
+        width: 180px;
     }   
 
     .detalhes {
