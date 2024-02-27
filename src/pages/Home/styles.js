@@ -20,12 +20,12 @@ row-gap: 4rem;
 `
 
 export const Pokemon = styled.li`
-    width: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 2rem;
     transition: all 0.3s;
+    background-color: rgb(170, 159, 144);
 
 span{
     margin-bottom: 1rem;
